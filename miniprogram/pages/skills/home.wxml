@@ -1,5 +1,5 @@
 <view class="page">
-  <view class="header"><text class="header-title">我的技能</text><text class="header-desc">不断探索，持续成长</text></view>
+  <view class="header"><text class="header-title">Skills</text><text class="header-desc">不断探索，持续成长</text></view>
   <view wx:for="{{skillCategories}}" wx:key="name" class="category-section">
     <view class="category-header"><text class="category-name">{{item.name}}</text></view>
     <view class="skill-grid">

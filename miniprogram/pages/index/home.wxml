@@ -16,7 +16,7 @@
   </swiper>
   <view class="section">
     <view class="section-header">
-      <text class="section-title">最新文章</text>
+      <text class="section-title">最新手账</text>
       <navigator class="section-more" url="/pages/about/home">查看更多</navigator>
     </view>
     <view class="article-list">

@@ -21,3 +21,28 @@
 .load-more-text { font-size:26rpx; color:#999; }
 .admin-entry { text-align:center; padding:40rpx 0; opacity:0.3; }
 .admin-avatar { width:80rpx; height:80rpx; border-radius:50%; }
+.admin-section { padding: 30rpx; margin-top: 20rpx; }
+.admin-entry-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 20rpx;
+  background: #f8f8f8;
+  border-radius: 16rpx;
+  border: 1rpx dashed #ddd;
+}
+.admin-icon { font-size: 36rpx; }
+.admin-text { font-size: 26rpx; color: #999; }
+.admin-hint { font-size: 22rpx; color: #ccc; }
+
+.admin-section { padding: 30rpx; margin-top: 20rpx; }
+.admin-entry-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rpx;
+  background: transparent;
+  border: none;
+}
+.admin-hint { font-size: 20rpx; color: transparent; }

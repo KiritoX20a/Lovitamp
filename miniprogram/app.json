@@ -24,25 +24,25 @@
     "list": [
       {
         "pagePath": "pages/index/home",
-        "text": "首页",
+        "text": "Home",
         "iconPath": "images/tab/home.png",
         "selectedIconPath": "images/tab/home-active.png"
       },
       {
         "pagePath": "pages/skills/home",
-        "text": "技能",
+        "text": "Skills",
         "iconPath": "images/tab/skills.png",
         "selectedIconPath": "images/tab/skills-active.png"
       },
       {
         "pagePath": "pages/portfolio/home",
-        "text": "作品集",
+        "text": "Lives",
         "iconPath": "images/tab/portfolio.png",
         "selectedIconPath": "images/tab/portfolio-active.png"
       },
       {
         "pagePath": "pages/about/home",
-        "text": "关于我",
+        "text": "About",
         "iconPath": "images/tab/about.png",
         "selectedIconPath": "images/tab/about-active.png"
       }

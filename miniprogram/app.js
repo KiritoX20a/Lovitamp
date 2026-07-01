@@ -6,6 +6,9 @@ App({
     systemInfo: null
   },
   onLaunch() {
+    wx.cloud.init({
+      env:'cloud1-d0gco1o9sa9b1054c'
+    })
     wx.getSystemInfo({
       success: (res) => {
         this.globalData.systemInfo = res
