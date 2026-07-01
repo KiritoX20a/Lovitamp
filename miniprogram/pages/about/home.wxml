@@ -1,3 +1,31 @@
-<view class="container">
-  <text>关于我</text>
+<view class="page">
+  <view class="about-section card">
+    <text class="about-title">关于我</text>
+    <text class="about-content">{{aboutContent}}</text>
+    <view class="contact-row" wx:for="{{contacts}}" wx:key="name">
+      <text class="contact-label">{{item.label}}</text>
+      <text class="contact-value">{{item.value}}</text>
+    </view>
+  </view>
+  <view class="tab-bar">
+    <view class="tab {{currentTab==='blog'?'active':''}}" data-tab="blog" bindtap="switchTab">BLOG</view>
+    <view class="tab {{currentTab==='vlog'?'active':''}}" data-tab="vlog" bindtap="switchTab">VLOG</view>
+  </view>
+  <view class="content-list">
+    <view wx:for="{{contentList}}" wx:key="_id" class="content-card" bindtap="goToDetail" data-id="{{item._id}}">
+      <image class="content-cover" src="{{item.coverImage}}" mode="aspectFill" wx:if="{{item.coverImage}}"></image>
+      <view class="content-info">
+        <text class="content-title">{{item.title}}</text>
+        <text class="content-summary">{{item.summary}}</text>
+        <view class="content-meta">
+          <text class="content-date">{{formatDate(item.publishDate)}}</text>
+          <text class="content-category" wx:if="{{item.category}}">{{item.category}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="load-more" wx:if="{{hasMore}}"><text class="load-more-text" bindtap="loadMore">加载更多</text></view>
+  <view class="admin-entry" bindtap="onAvatarTap">
+    <image class="admin-avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+  </view>
 </view>

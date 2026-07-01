@@ -1,3 +1,13 @@
-<view class="container">
-  <text>媒体管理</text>
+<view class="page">
+  <view class="header-bar"><text class="header-title">媒体管理</text><button class="upload-btn" bindtap="uploadMedia">上传</button></view>
+  <view class="media-grid">
+    <view wx:for="{{mediaList}}" wx:key="_id" class="media-card">
+      <image class="media-thumb" src="{{item.thumbnail||item.url}}" mode="aspectFill"></image>
+      <view class="media-info"><text class="media-title">{{item.title||"未命名"}}</text><text class="media-type">{{item.type==="image"?"图片":"视频"}}</text></view>
+      <view class="media-actions">
+        <button class="action-btn" bindtap="editMedia" data-id="{{item._id}}">编辑</button>
+        <button class="action-btn delete" bindtap="deleteMedia" data-id="{{item._id}}" data-fileid="{{item.url}}">删除</button>
+      </view>
+    </view>
+  </view>
 </view>

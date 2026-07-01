@@ -1,3 +1,15 @@
-<view class="container">
-  <text>技能管理</text>
+<view class="page">
+  <view class="header-bar"><text class="header-title">技能管理</text><button class="add-btn" bindtap="addSkill">添加技能</button></view>
+  <view class="skill-list">
+    <view wx:for="{{skillList}}" wx:key="_id" class="skill-row">
+      <view class="skill-info">
+        <text class="skill-icon">{{item.icon||"⚡"}}</text>
+        <view class="skill-text"><text class="skill-name">{{item.name}}</text><text class="skill-category">{{item.category}}</text></view>
+      </view>
+      <view class="skill-actions">
+        <button class="action-btn" bindtap="editSkill" data-id="{{item._id}}">编辑</button>
+        <button class="action-btn delete" bindtap="deleteSkill" data-id="{{item._id}}">删除</button>
+      </view>
+    </view>
+  </view>
 </view>

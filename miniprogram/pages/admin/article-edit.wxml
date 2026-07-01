@@ -1,3 +1,22 @@
-<view class="container">
-  <text>编辑文章</text>
+<view class="page">
+  <view class="form">
+    <view class="form-group"><text class="label">标题</text><input class="input" placeholder="输入文章标题" value="{{title}}" bindinput="onInput" data-field="title" /></view>
+    <view class="form-group"><text class="label">类型</text><picker range="{{typeOptions}}" value="{{typeIndex}}" bindchange="onTypeChange"><view class="picker">{{typeOptions[typeIndex]}}</view></picker></view>
+    <view class="form-group"><text class="label">分类</text><input class="input" placeholder="如：摄影、AI" value="{{category}}" bindinput="onInput" data-field="category" /></view>
+    <view class="form-group"><text class="label">标签（逗号分隔）</text><input class="input" placeholder="标签1,标签2" value="{{tagsStr}}" bindinput="onTagsInput" /></view>
+    <view class="form-group"><text class="label">摘要</text><textarea class="textarea" placeholder="简短摘要" value="{{summary}}" bindinput="onInput" data-field="summary" /></view>
+    <view class="form-group"><text class="label">封面图</text>
+      <view class="cover-picker" bindtap="chooseCover">
+        <image class="cover-preview" src="{{coverImage}}" mode="aspectFill" wx:if="{{coverImage}}"></image>
+        <text class="cover-placeholder" wx:else>点击选择封面图</text>
+      </view>
+    </view>
+    <view class="form-group" wx:if="{{typeIndex===0}}"><text class="label">正文（Markdown）</text><textarea class="textarea content-input" placeholder="输入Markdown格式正文" value="{{content}}" bindinput="onInput" data-field="content" /></view>
+    <view class="form-group" wx:if="{{typeIndex===1}}"><text class="label">视频文件ID</text><input class="input" placeholder="输入视频文件ID" value="{{content}}" bindinput="onInput" data-field="content" /></view>
+    <view class="form-actions">
+      <button class="btn-primary" bindtap="saveAsDraft">存草稿</button>
+      <button class="btn-primary btn-publish" bindtap="publish">发布</button>
+      <button class="btn-danger" bindtap="deleteArticle" wx:if="{{isEdit}}">删除</button>
+    </view>
+  </view>
 </view>

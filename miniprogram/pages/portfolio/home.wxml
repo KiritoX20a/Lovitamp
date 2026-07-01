@@ -1,3 +1,12 @@
-<view class="container">
-  <text>作品集</text>
+<view class="page">
+  <scroll-view class="filter-bar" scroll-x="{{true}}" show-scrollbar="{{false}}">
+    <view wx:for="{{categories}}" wx:key="name" class="filter-tag {{currentCategory===item.name?'active':''}}" bindtap="switchCategory" data-category="{{item.name}}">{{item.name}}</view>
+  </scroll-view>
+  <view class="media-grid">
+    <view wx:for="{{mediaList}}" wx:key="_id" class="media-item {{item.type==='video'?'video-item':''}}" bindtap="previewMedia" data-item="{{item}}">
+      <image class="media-thumb" src="{{item.thumbnail||item.url}}" mode="aspectFill" lazy-load="{{true}}"></image>
+      <view class="media-overlay" wx:if="{{item.type==='video'}}"><text class="play-icon">▶</text></view>
+    </view>
+  </view>
+  <view class="load-more" wx:if="{{hasMore}}"><text class="load-more-text" bindtap="loadMore">加载更多</text></view>
 </view>

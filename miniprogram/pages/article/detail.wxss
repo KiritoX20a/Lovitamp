@@ -1,1 +1,9 @@
-@import "../../app.wxss";
+.page { background:#fff; min-height:100vh; }
+.cover { width:100%; }
+.video-player { width:100%; }
+.article-header { padding:30rpx; }
+.title { font-size:36rpx; font-weight:700; color:#333; line-height:1.4; margin-bottom:16rpx; display:block; }
+.meta { display:flex; flex-wrap:wrap; gap:8rpx; align-items:center; }
+.date { font-size:24rpx; color:#999; }
+.tag { font-size:22rpx; color:#1a1a2e; padding:4rpx 16rpx; border-radius:4rpx; background:#f0f2f5; }
+.content { padding:0 30rpx 40rpx; font-size:30rpx; line-height:1.8; color:#333; }

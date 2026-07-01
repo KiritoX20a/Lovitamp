@@ -1,3 +1,33 @@
-<view class="container">
-  <text>首页</text>
+<view class="page">
+  <view class="profile-section">
+    <view class="avatar-container">
+      <image class="avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+    </view>
+    <text class="nickname">{{nickname}}</text>
+    <text class="bio">{{bio}}</text>
+    <view class="social-links">
+      <text wx:for="{{socialLinks}}" wx:key="name" class="social-tag">{{item.name}}</text>
+    </view>
+  </view>
+  <swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" circular="{{true}}">
+    <swiper-item wx:for="{{carouselItems}}" wx:key="index">
+      <image class="swiper-image" src="{{item}}" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">最新文章</text>
+      <navigator class="section-more" url="/pages/about/home">查看更多</navigator>
+    </view>
+    <view class="article-list">
+      <view wx:for="{{latestArticles}}" wx:key="_id" class="article-card" bindtap="goToArticle" data-id="{{item._id}}">
+        <image class="article-cover" src="{{item.coverImage}}" mode="aspectFill" wx:if="{{item.coverImage}}"></image>
+        <view class="article-info">
+          <text class="article-title">{{item.title}}</text>
+          <text class="article-summary">{{item.summary}}</text>
+          <text class="article-date">{{formatDate(item.publishDate)}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

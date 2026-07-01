@@ -1,3 +1,16 @@
-<view class="container">
-  <text>技能</text>
+<view class="page">
+  <view class="header"><text class="header-title">我的技能</text><text class="header-desc">不断探索，持续成长</text></view>
+  <view wx:for="{{skillCategories}}" wx:key="name" class="category-section">
+    <view class="category-header"><text class="category-name">{{item.name}}</text></view>
+    <view class="skill-grid">
+      <view wx:for="{{item.skills}}" wx:key="_id" class="skill-card">
+        <text class="skill-icon">{{item.icon}}</text>
+        <text class="skill-name">{{item.name}}</text>
+        <view class="skill-level">
+          <text wx:for="{{[1,2,3,4,5]}}" wx:key="index" class="star {{index<item.level?'active':''}}">★</text>
+        </view>
+        <text class="skill-desc" wx:if="{{item.description}}">{{item.description}}</text>
+      </view>
+    </view>
+  </view>
 </view>
