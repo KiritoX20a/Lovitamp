@@ -18,10 +18,32 @@ exports.main = async (event, context) => {
       .skip(skip)
       .limit(pageSize)
       .get()
+
+    const fileIds = [...new Set(
+      res.data
+        .map((item) => item.coverImage)
+        .filter(Boolean)
+    )]
+
+    let tempUrlMap = {}
+    if (fileIds.length > 0) {
+      const tempRes = await cloud.getTempFileURL({
+        fileList: fileIds
+      })
+      tempUrlMap = tempRes.fileList.reduce((acc, file) => {
+        acc[file.fileID] = file.tempFileURL
+        return acc
+      }, {})
+    }
+
+    const data = res.data.map((item) => ({
+      ...item,
+      coverImageUrl: item.coverImage ? tempUrlMap[item.coverImage] || '' : ''
+    }))
     
     return {
       code: 0,
-      data: res.data,
+      data,
       total: countResult.total,
       page,
       pageSize

@@ -1,14 +1,12 @@
-.page { min-height:100vh; background:#f5f5f5; }
+.page { min-height:100vh; background:#f6f4ee; }
 .header-bar { display:flex; justify-content:space-between; align-items:center; padding:30rpx; }
-.header-title { font-size:36rpx; font-weight:600; color:#333; }
-.add-btn { height:64rpx; line-height:64rpx; padding:0 24rpx; background:#1a1a2e; color:#fff; border-radius:12rpx; font-size:26rpx; }
+.header-title { font-size:36rpx; font-weight:700; color:#1f2320; }
 .skill-list { padding:0 30rpx; }
-.skill-row { display:flex; align-items:center; justify-content:space-between; background:#fff; border-radius:16rpx; padding:20rpx; margin-bottom:16rpx; box-shadow:0 2rpx 12rpx rgba(0,0,0,0.06); }
+.skill-row { display:flex; align-items:center; justify-content:space-between; background:#fffcf7; border-radius:20rpx; padding:20rpx; margin-bottom:16rpx; box-shadow:0 8rpx 24rpx rgba(31,35,32,0.08); border:1rpx solid rgba(221,216,204,0.8); }
 .skill-info { display:flex; align-items:center; gap:16rpx; flex:1; }
 .skill-icon { font-size:40rpx; }
 .skill-text { }
-.skill-name { font-size:28rpx; font-weight:500; color:#333; display:block; }
-.skill-category { font-size:22rpx; color:#999; }
+.skill-name { font-size:28rpx; font-weight:600; color:#1f2320; display:block; }
+.skill-category { font-size:22rpx; color:#8a918c; }
 .skill-actions { display:flex; gap:12rpx; }
-.action-btn { height:56rpx; line-height:56rpx; padding:0 20rpx; background:#f0f2f5; border-radius:8rpx; font-size:24rpx; color:#333; }
-.action-btn.delete { background:#ffe0e0; color:#e74c3c; }
+.action-btn { min-width:120rpx; }

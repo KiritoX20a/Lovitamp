@@ -1,12 +1,97 @@
-.page { min-height:100vh; background:#f5f5f5; }
-.filter-bar { white-space:nowrap; padding:20rpx 30rpx; background:#fff; }
-.filter-tag { display:inline-block; padding:12rpx 30rpx; margin-right:16rpx; border-radius:30rpx; background:#f0f0f0; font-size:26rpx; color:#666; }
-.filter-tag.active { background:#1a1a2e; color:#fff; }
-.media-grid { display:grid; grid-template-columns:1fr 1fr; gap:6rpx; padding:6rpx; }
-.media-item { position:relative; overflow:hidden; border-radius:4rpx; }
-.media-thumb { width:100%; height:0; padding-bottom:100%; }
-.video-item .media-thumb { padding-bottom:133%; }
-.media-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.3); }
-.play-icon { font-size:60rpx; color:#fff; }
-.load-more { text-align:center; padding:30rpx; }
-.load-more-text { font-size:26rpx; color:#999; }
+.page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 168rpx;
+}
+
+.portfolio-head {
+  margin-bottom: 22rpx;
+}
+
+.portfolio-title {
+  display: block;
+  font-size: 42rpx;
+  font-weight: 700;
+  color: #1f2320;
+  margin-bottom: 12rpx;
+}
+
+.portfolio-desc {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: #66706a;
+}
+
+.filter-bar {
+  white-space: nowrap;
+  margin-bottom: 18rpx;
+}
+
+.filter-tag {
+  display: inline-flex;
+  margin-right: 14rpx;
+}
+
+.filter-tag.active {
+  box-shadow: 0 10rpx 20rpx rgba(47, 107, 87, 0.14);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14rpx;
+}
+
+.media-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(221, 216, 204, 0.8);
+  box-shadow: 0 8rpx 24rpx rgba(31, 35, 32, 0.08);
+  background: #d7dbd4;
+}
+
+.media-thumb {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.video-item .media-thumb {
+  padding-bottom: 128%;
+}
+
+.media-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 18rpx;
+  background: linear-gradient(180deg, rgba(18, 22, 20, 0.22), transparent 42%);
+}
+
+.play-chip {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 252, 247, 0.88);
+  backdrop-filter: blur(10rpx);
+}
+
+.play-icon {
+  font-size: 28rpx;
+  color: #2f6b57;
+}
+
+.load-more {
+  text-align: center;
+  padding: 30rpx 0 10rpx;
+}
+
+.load-more-text {
+  min-width: 200rpx;
+}

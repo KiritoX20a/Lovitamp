@@ -1,12 +1,22 @@
-<view class="page">
-  <scroll-view class="filter-bar" scroll-x="{{true}}" show-scrollbar="{{false}}">
-    <view wx:for="{{categories}}" wx:key="name" class="filter-tag {{currentCategory===item.name?'active':''}}" bindtap="switchCategory" data-category="{{item.name}}">{{item.name}}</view>
-  </scroll-view>
-  <view class="media-grid">
-    <view wx:for="{{mediaList}}" wx:key="_id" class="media-item {{item.type==='video'?'video-item':''}}" bindtap="previewMedia" data-item="{{item}}">
-      <image class="media-thumb" src="{{item.thumbnail||item.url}}" mode="aspectFill" lazy-load="{{true}}"></image>
-      <view class="media-overlay" wx:if="{{item.type==='video'}}"><text class="play-icon">▶</text></view>
+<view class="page-shell">
+  <view class="page">
+    <view class="portfolio-head">
+      <text class="portfolio-title">作品集</text>
+      <text class="portfolio-desc">把影像、片段和喜欢的时刻收在同一个画廊里。</text>
     </view>
+    <scroll-view class="filter-bar" scroll-x="{{true}}" show-scrollbar="{{false}}">
+      <view wx:for="{{categories}}" wx:key="*this" class="btn-chip filter-tag {{currentCategory===item?'btn-chip-active active':''}}" bindtap="switchCategory" data-category="{{item}}">{{item}}</view>
+    </scroll-view>
+    <view class="media-grid">
+      <view wx:for="{{mediaList}}" wx:key="_id" class="media-item {{item.type==='video'?'video-item':''}}" bindtap="previewMedia" data-item="{{item}}">
+        <image class="media-thumb" src="{{item.thumbnailUrl||item.urlTemp||item.thumbnail||item.url}}" mode="aspectFill" lazy-load="{{true}}"></image>
+        <view class="media-overlay" wx:if="{{item.type==='video'}}">
+          <view class="play-chip">
+            <text class="play-icon">▶</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="load-more" wx:if="{{hasMore}}"><text class="btn-secondary btn-compact load-more-text" bindtap="loadMore">继续浏览</text></view>
   </view>
-  <view class="load-more" wx:if="{{hasMore}}"><text class="load-more-text" bindtap="loadMore">加载更多</text></view>
 </view>

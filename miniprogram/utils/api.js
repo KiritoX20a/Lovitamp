@@ -56,6 +56,10 @@ function getMedia(params = {}) {
   return callCloudFunction('getMedia', params)
 }
 
+function createMedia(data) {
+  return callCloudFunction('createMedia', data)
+}
+
 function updateMedia(mediaId, data) {
   return callCloudFunction('updateMedia', { mediaId, ...data })
 }
@@ -77,6 +81,7 @@ module.exports = {
   updateSkill,
   deleteSkill,
   getMedia,
+  createMedia,
   updateMedia,
   deleteMedia
 }

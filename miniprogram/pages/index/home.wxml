@@ -1,31 +1,51 @@
-<view class="page">
-  <view class="profile-section">
-    <view class="avatar-container">
-      <image class="avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+<view class="page-shell">
+  <view class="page">
+    <view class="hero-card">
+      <view class="hero-top">
+        <view class="avatar-container">
+          <image class="avatar" src="{{avatarUrl}}" mode="aspectFill"></image>
+        </view>
+        <view class="hero-copy">
+          <text class="hero-tag">个人品牌</text>
+          <text class="nickname">{{nickname}}</text>
+          <text class="bio">{{bio}}</text>
+        </view>
+      </view>
+      <view class="button-row hero-actions">
+        <navigator class="btn-primary" url="/pages/portfolio/home">作品精选</navigator>
+        <navigator class="btn-secondary" url="/pages/skills/home">技能图谱</navigator>
+      </view>
+      <view class="social-links" wx:if="{{socialLinks.length}}">
+        <text wx:for="{{socialLinks}}" wx:key="name" class="social-tag">{{item.name}}</text>
+      </view>
     </view>
-    <text class="nickname">{{nickname}}</text>
-    <text class="bio">{{bio}}</text>
-    <view class="social-links">
-      <text wx:for="{{socialLinks}}" wx:key="name" class="social-tag">{{item.name}}</text>
-    </view>
-  </view>
-  <swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" circular="{{true}}">
+    <view class="feature-media">
+      <view class="section-heading">
+        <text class="section-title">精选画面</text>
+        <text class="section-note">图片与视频</text>
+      </view>
+      <swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" circular="{{true}}">
     <swiper-item wx:for="{{carouselItems}}" wx:key="index">
-      <image class="swiper-image" src="{{item}}" mode="aspectFill"></image>
+        <image class="swiper-image" src="{{item}}" mode="aspectFill"></image>
     </swiper-item>
-  </swiper>
-  <view class="section">
-    <view class="section-header">
-      <text class="section-title">最新手账</text>
-      <navigator class="section-more" url="/pages/about/home">查看更多</navigator>
+      </swiper>
     </view>
-    <view class="article-list">
-      <view wx:for="{{latestArticles}}" wx:key="_id" class="article-card" bindtap="goToArticle" data-id="{{item._id}}">
-        <image class="article-cover" src="{{item.coverImage}}" mode="aspectFill" wx:if="{{item.coverImage}}"></image>
-        <view class="article-info">
-          <text class="article-title">{{item.title}}</text>
-          <text class="article-summary">{{item.summary}}</text>
-          <text class="article-date">{{formatDate(item.publishDate)}}</text>
+    <view class="section">
+      <view class="section-heading">
+        <text class="section-title">最近更新</text>
+        <navigator class="btn-text section-more" url="/pages/about/home">全部内容</navigator>
+      </view>
+      <view class="article-list">
+        <view wx:for="{{latestArticles}}" wx:key="_id" class="article-card" bindtap="goToArticle" data-id="{{item._id}}">
+          <image class="article-cover" src="{{item.coverImageUrl||item.coverImage}}" mode="aspectFill" wx:if="{{item.coverImageUrl||item.coverImage}}"></image>
+          <view class="article-info">
+            <view class="article-meta-top">
+              <text class="pill article-type">内容</text>
+              <text class="article-date">{{formatDate(item.publishDate)}}</text>
+            </view>
+            <text class="article-title">{{item.title}}</text>
+            <text class="article-summary">{{item.summary}}</text>
+          </view>
         </view>
       </view>
     </view>

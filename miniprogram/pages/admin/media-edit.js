@@ -1,5 +1,6 @@
 const api = require("../../utils/api")
 const util = require("../../utils/util")
+
 Page({
   data: { mediaList:[], page:1, pageSize:20, hasMore:true },
   onLoad(){ this.loadMedia() },
@@ -18,22 +19,69 @@ Page({
   },
   chooseImage(){
     wx.chooseImage({count:9,sizeType:["compressed"],sourceType:["album"],
-      success:(r)=>{
+      success: async (r)=>{
         util.showLoading("上传中...")
-        Promise.all(r.tempFilePaths.map((p,i)=>wx.cloud.uploadFile({cloudPath:"media/"+Date.now()+"-"+i+".jpg",filePath:p}))
-        ).then(()=>{ util.hideLoading(); util.showToast("上传完成","success"); this.loadMedia() }
-        ).catch(()=>{ util.hideLoading(); util.showToast("上传失败") })
+        try {
+          const uploadedFiles = await Promise.all(
+            r.tempFilePaths.map((p, i) => wx.cloud.uploadFile({
+              cloudPath: "media/" + Date.now() + "-" + i + ".jpg",
+              filePath: p
+            }))
+          )
+          await Promise.all(
+            uploadedFiles.map((file, index) => api.createMedia({
+              title: "图片 " + (index + 1),
+              type: "image",
+              url: file.fileID,
+              thumbnail: file.fileID,
+              category: "未分类",
+              sortOrder: Date.now() + index
+            }))
+          )
+          util.hideLoading()
+          util.showToast("上传完成","success")
+          this.loadMedia()
+        } catch (e) {
+          console.error("图片上传失败", e)
+          util.hideLoading()
+          util.showToast("上传失败")
+        }
       }
     })
   },
   chooseVideo(){
     wx.chooseVideo({sourceType:["album","camera"],maxDuration:120,camera:"back",
-      success:(r)=>{
+      success: async (r)=>{
         util.showLoading("上传中...")
-        wx.cloud.uploadFile({cloudPath:"media/"+Date.now()+".mp4",filePath:r.tempFilePath}
-        ).then(ur=>api.createArticle({title:"",summary:"",content:ur.fileID,coverImage:r.thumbTempFilePath||"",type:"vlog",status:"published"})
-        ).then(()=>{ util.hideLoading(); util.showToast("上传成功","success"); this.loadMedia() }
-        ).catch(()=>{ util.hideLoading(); util.showToast("上传失败") })
+        try {
+          const videoUpload = await wx.cloud.uploadFile({
+            cloudPath:"media/"+Date.now()+".mp4",
+            filePath:r.tempFilePath
+          })
+          let thumbnailFileId = ""
+          if (r.thumbTempFilePath) {
+            const thumbUpload = await wx.cloud.uploadFile({
+              cloudPath:"media/thumb-"+Date.now()+".jpg",
+              filePath:r.thumbTempFilePath
+            })
+            thumbnailFileId = thumbUpload.fileID
+          }
+          await api.createMedia({
+            title: "视频作品",
+            type: "video",
+            url: videoUpload.fileID,
+            thumbnail: thumbnailFileId,
+            category: "未分类",
+            sortOrder: Date.now()
+          })
+          util.hideLoading()
+          util.showToast("上传成功","success")
+          this.loadMedia()
+        } catch (e) {
+          console.error("视频上传失败", e)
+          util.hideLoading()
+          util.showToast("上传失败")
+        }
       }
     })
   },

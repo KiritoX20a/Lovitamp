@@ -1,33 +1,40 @@
-<view class="page">
-  <view class="about-section card">
-    <text class="about-title">About</text>
-    <text class="about-content">{{aboutContent}}</text>
-    <view class="contact-row" wx:for="{{contacts}}" wx:key="name" wx:if="{{contacts.length>0}}">
-      <text class="contact-label">{{item.label}}</text>
-      <text class="contact-value">{{item.value}}</text>
-    </view>
-  </view>
-  <view class="tab-bar">
-    <view class="tab {{currentTab==='blog'?'active':''}}" data-tab="blog" bindtap="switchTab">BLOG</view>
-    <view class="tab {{currentTab==='vlog'?'active':''}}" data-tab="vlog" bindtap="switchTab">VLOG</view>
-  </view>
-  <view class="content-list">
-    <view wx:for="{{contentList}}" wx:key="_id" class="content-card" bindtap="goToDetail" data-id="{{item._id}}">
-      <image class="content-cover" src="{{item.coverImage}}" mode="aspectFill" wx:if="{{item.coverImage}}"></image>
-      <view class="content-info">
-        <text class="content-title">{{item.title}}</text>
-        <text class="content-summary">{{item.summary}}</text>
-        <view class="content-meta">
-          <text class="content-date">{{formatDate(item.publishDate)}}</text>
-          <text class="content-category" wx:if="{{item.category}}">{{item.category}}</text>
+<view class="page-shell">
+  <view class="page">
+    <view class="about-hero card">
+      <view class="section-heading">
+        <text class="section-title">关于我</text>
+        <text class="section-note">文章与影像</text>
+      </view>
+      <text class="about-content">{{aboutContent}}</text>
+      <view class="contact-list" wx:if="{{contacts.length>0}}">
+        <view class="contact-row" wx:for="{{contacts}}" wx:key="name">
+          <text class="contact-label">{{item.label}}</text>
+          <text class="contact-value">{{item.value}}</text>
         </view>
       </view>
     </view>
-  </view>
-  <view class="load-more" wx:if="{{hasMore}}"><text class="load-more-text" bindtap="loadMore">加载更多</text></view>
-  <view class="admin-section">
-    <view class="admin-entry-btn" bindtap="onAvatarTap">
-      <text class="admin-hint">连续点击进入后台</text>
+    <view class="tab-bar">
+      <view class="tab {{currentTab==='blog'?'active':''}}" data-tab="blog" bindtap="switchTab">文章</view>
+      <view class="tab {{currentTab==='vlog'?'active':''}}" data-tab="vlog" bindtap="switchTab">影像</view>
+    </view>
+    <view class="content-list">
+      <view wx:for="{{contentList}}" wx:key="_id" class="content-card" bindtap="goToDetail" data-id="{{item._id}}">
+        <image class="content-cover" src="{{item.coverImageUrl||item.coverImage}}" mode="aspectFill" wx:if="{{item.coverImageUrl||item.coverImage}}"></image>
+        <view class="content-info">
+          <text class="content-title">{{item.title}}</text>
+          <text class="content-summary">{{item.summary}}</text>
+          <view class="content-meta">
+            <text class="content-date">{{formatDate(item.publishDate)}}</text>
+            <text class="content-category" wx:if="{{item.category}}">{{item.category}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="load-more" wx:if="{{hasMore}}"><text class="btn-secondary btn-compact load-more-text" bindtap="loadMore">查看更多</text></view>
+    <view class="admin-section">
+      <view class="admin-entry-btn" bindtap="onAvatarTap">
+        <text class="admin-hint">管理入口</text>
+      </view>
     </view>
   </view>
 </view>
